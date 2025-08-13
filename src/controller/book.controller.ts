@@ -15,6 +15,7 @@ export const saveBook = async (req:Request,res:Response,next:NextFunction) => {
     }
 }
 
+
 export const viewBooks = async (req:Request,res:Response,next:NextFunction) => {
 
     try{
@@ -29,6 +30,7 @@ export const viewBooks = async (req:Request,res:Response,next:NextFunction) => {
 export const updateBook = async (req:Request,res:Response,next:NextFunction) => {
 
     try{
+        console.log(req.body)
         const updatedBook = await BookModel.findByIdAndUpdate(
             req.params.id,
             req.body,
@@ -71,7 +73,7 @@ export const deleteBook = async (req:Request,res:Response,next:NextFunction) => 
 export const viewByName = async (req: Request, res: Response, next: NextFunction) => {
     const name = req.params.name;
     try {
-        const books = await BookModel.find({ title: { $regex: name, $options: 'i' } }); // case-insensitive partial match
+        const books = await BookModel.find({ title: { $regex: name, $options: 'i' } });
         res.status(200).json(books);
     } catch (error) {
         next(error)
