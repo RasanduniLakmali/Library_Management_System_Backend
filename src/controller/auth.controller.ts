@@ -11,7 +11,7 @@ const createAccessToken = (userId:string) => {
     return jwt.sign(
         {userId},
         process.env.ACCESS_TOKEN_SECRET!,
-        {expiresIn: "60s"}
+        {expiresIn: "2h"}
     )
 }
 
@@ -236,7 +236,7 @@ export const requireAuth = (req: Request, res: Response, next: NextFunction) => 
     const token = authHeader.split(" ")[1];
 
     try {
-        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!) as { userId: string }; // ✅ FIXED HERE
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!) as { userId: string };
         req.body.userId = decoded.userId;
         next();
     } catch (err) {
