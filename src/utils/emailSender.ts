@@ -5,13 +5,11 @@ const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'rasandunilakmali26@gmail.com',
-        pass: 'iljg ylku tfqp lnhs' // Make sure to use a secure method to store this
+        pass: 'iljg ylku tfqp lnhs'
     }
 });
 
-/**
- * Generate plain text content for overdue notification
- */
+
 const generateEmailContent = (
     readerName: string,
     books: { title: string, dueDate: string }[]
@@ -32,9 +30,7 @@ Library Team
   `;
 };
 
-/**
- * Send overdue notification email (HTML + plain text)
- */
+
 export const sendOverdueEmail = async (
     to: string,
     readerName: string,
